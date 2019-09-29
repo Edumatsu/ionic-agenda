@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      {{ editing ? 'Editar' : 'Criar' }} contato
+    </ion-title>
+    <ion-buttons slot="end">
+        <ion-button (click)="dismissModal()">Fechar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <form (submit)="createOrEdit()">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">Nome <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" name="first_name" [(ngModel)]="form.first_name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Sobrenome <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" name="last_name" [(ngModel)]="form.last_name"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Email <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" name="email" [(ngModel)]="form.email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Instituição <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" name="instituicao" [(ngModel)]="form.instituicao"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Aniversário <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="date" name="birthday" [(ngModel)]="form.birthday"></ion-input>
+      </ion-item>
+
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" class="ion-no-margin">{{ editing ? 'Alterar' : 'Criar' }}</ion-button>
+    </div>
+  </form>
+</ion-content>

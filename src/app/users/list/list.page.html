@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Pessoas
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+  
+  <ion-content>
+
+      <ion-card *ngIf="item.name" class="star-card">
+          <ion-card-header>
+            <ion-card-title>{{item.name}}</ion-card-title>
+            <span class="close" (click)="hideCard()">X</span>
+          </ion-card-header>
+        
+          <ion-card-content>
+              <strong>Ano de aniversário:</strong> {{item.birth_year}} <br>
+              <strong>Altura:</strong> {{item.height}} <br>
+              <strong>Peso:</strong> {{item.mass}} <br>
+              <strong>Cor do cabelo:</strong> {{item.hair_color}} <br>
+              <strong>Cor da pele:</strong> {{item.skin_color}} <br>
+          </ion-card-content>
+        </ion-card>
+
+    <ion-list>
+      <ion-item *ngFor="let item of items" (click)="showCard(item)">
+        {{item.name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  

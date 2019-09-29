@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <form (submit)="login()">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="stacked">Login <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" name="login" [(ngModel)]="form.login"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Senha <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="password" name="password" [(ngModel)]="form.password"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" class="ion-no-margin">Entrar</ion-button>
+    </div>
+
+    
+    <ion-item routerDirection="'root'" routerLink="/register">
+      <ion-icon slot="start" name="person"></ion-icon>
+      <ion-label>
+        Quero me cadastrar!
+      </ion-label>
+    </ion-item>
+
+  </form>
+</ion-content>
