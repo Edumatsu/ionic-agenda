@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { GlobalVariables } from '../../services/variables';
 import { ModalController, NavParams } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal-edit',
@@ -17,7 +18,8 @@ export class EditModal {
     private http: Http,
     public modalController: ModalController,
     public global: GlobalVariables,
-    navParams: NavParams
+    navParams: NavParams,
+    private router: Router
   ) {
 
     if (navParams.get('_id')) {
@@ -51,7 +53,12 @@ export class EditModal {
         console.log('this', this);
       },
       (error) => {
-        this.global.showToast(error.json().error, "danger");
+        let msg = error.json().error;
+        this.global.showToast(msg, "danger");
+
+        if (msg == "Token not invalid") {
+          this.router.navigate(['/login']);
+        }
       });
   }
 

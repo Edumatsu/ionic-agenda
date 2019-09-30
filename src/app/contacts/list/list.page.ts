@@ -5,6 +5,7 @@ import { ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { GlobalVariables } from '../../services/variables';
 import { EditModal } from './modal-edit.page';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list',
@@ -20,7 +21,8 @@ export class ListPage {
     private http: Http, 
     public toastController: ToastController,
     public modalController: ModalController,
-    public global: GlobalVariables
+    public global: GlobalVariables,
+    private router: Router
   ) {
     this.list();
   }
@@ -52,7 +54,12 @@ export class ListPage {
         this.items = result.json().docs;
       },
       (error) => {
-        this.global.showToast(error.json().error, "danger");
+        let msg = error.json().error;
+        this.global.showToast(msg, "danger");
+
+        if (msg == "Token not invalid") {
+          this.router.navigate(['/login']);
+        }
       });
   }
 
@@ -68,7 +75,12 @@ export class ListPage {
       this.list();
     },
     (error) => {
-      this.global.showToast(error.json().error, "danger");
+      let msg = error.json().error;
+      this.global.showToast(msg, "danger");
+
+      if (msg == "Token not invalid") {
+        this.router.navigate(['/login']);
+      }
     });    
   }
 
